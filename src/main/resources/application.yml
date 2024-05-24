@@ -1,0 +1,23 @@
+lp:
+  name: Laydown Process
+  id: 1
+  config:
+    datasource:
+      username: postgres #${LP_PSQL_DB_USER}
+      password: root #${LP_PSQL_DB_PWD}
+      jdbc-url: jdbc:postgresql://localhost:5432/sw_lp #${POSTGRESQLCONNSTR_LP_PSQL_DB_URL}
+      driverClassName: org.postgresql.Driver
+      maximumPoolSize: 3
+spring:
+  profiles:
+    active: local #${LP_PROFILES}
+  mvc:
+    converters:
+      preferred-json-mapper: gson
+logging:
+  level:
+    org.springframework.boot.autoconfigure: error
+server:
+  port: 9970
+  servlet:
+    context-path: /lp-api
