@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <logger name="org.springframework" level="ERROR" additivity="true"/>
+  <logger name="org.apache.catalina" level="ERROR" additivity="true"/>
+  <logger name="com.zaxxer.hikari" level="ERROR" additivity="true"/>
+  <logger name="com.sw.lp" level="INFO" additivity="true"/>
+
+  <if condition='isDefined("OFS_CONFIG_DIR")'>
+    <then>
+      <property file="${OFS_CONFIG_DIR}/lp_api_logger.properties"/>
+      <include file="${OFS_CONFIG_DIR}/ofs_api_logger.xml"/>
+    </then>
+  </if>
+
+</configuration>
