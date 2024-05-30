@@ -14,7 +14,6 @@ public class MachineMapper implements RowMapper<Machine> {
   public Machine mapRow(ResultSet rs, int numRows) throws SQLException {
     Machine machine = new Machine();
     machine.setName(rs.getString("name"));
-    machine.setDescription(rs.getString("description"));
     machine.setMillId(rs.getInt("mill_id"));
     machine.setYear(rs.getInt("year"));
     machine.setMachineId(rs.getInt("machine_id"));

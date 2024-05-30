@@ -36,6 +36,7 @@ public class MachineController {
 
   @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
   public AppResponse newMachine(@RequestBody Machine machine) {
+    machine.setMillId(1);
     machineService.saveMachine(machine);
     return AppResponse.ok("Success");
   }

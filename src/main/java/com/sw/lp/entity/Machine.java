@@ -9,7 +9,6 @@ public class Machine {
   private int machineId;
   private int millId;
   private String name;
-  private String description;
   private MachineMake make;
   private MachineModel model;
   private int year;
@@ -37,14 +36,6 @@ public class Machine {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
   }
 
   public MachineMake getMake() {
