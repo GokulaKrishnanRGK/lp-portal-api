@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.cors.CorsConfiguration;
@@ -24,7 +25,6 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests(req -> req.anyRequest().permitAll());
     http.cors(c -> c.configurationSource(request -> {
       CorsConfiguration cors = new CorsConfiguration();
       cors.setAllowedOriginPatterns(Collections.singletonList("*"));
@@ -34,6 +34,8 @@ public class SecurityConfig {
       cors.setAllowCredentials(true);
       return cors;
     }));
+    http.authorizeHttpRequests(req -> req.requestMatchers("*").permitAll());
+    http.csrf(AbstractHttpConfigurer::disable);
     return http.build();
   }
 

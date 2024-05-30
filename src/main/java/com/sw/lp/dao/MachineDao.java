@@ -25,12 +25,11 @@ public class MachineDao {
   }
 
   public void saveMachine(Machine machine) {
-    String sql = "INSERT INTO machine (machine_id, mill_id, name, description, model, make, year, machine_type) values (:mill_id, :name, "
-        + ":description, :model, :make, :year, :machine_type)";
+    String sql = "INSERT INTO machine (mill_id, name, model, make, year, machine_type) values (:mill_id, :name, "
+        + ":model, :make, :year, :machine_type)";
     Map<String, Object> parameters = new HashMap<>();
     parameters.put("mill_id", machine.getMillId());
     parameters.put("name", machine.getName());
-    parameters.put("description", machine.getDescription());
     parameters.put("model", machine.getModel().getType());
     parameters.put("make", machine.getMake().getType());
     parameters.put("year", machine.getYear());
@@ -39,7 +38,7 @@ public class MachineDao {
   }
 
   public List<Machine> getAllMachines(int millId) {
-    String sql = "SELECT * FROM machine where machine.mill_id=:millId";
+    String sql = "SELECT * FROM machine where machine.mill_id=?";
     return jdbcTemplate.query(sql, new MachineMapper(), millId);
   }
 
