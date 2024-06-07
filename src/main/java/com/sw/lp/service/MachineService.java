@@ -1,7 +1,7 @@
 package com.sw.lp.service;
 
 import com.sw.lp.dao.MachineDao;
-import com.sw.lp.entity.Machine;
+import com.sw.lp.record.Machine;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ public class MachineService {
     this.machineDao = machineDao;
   }
 
-  public void saveMachine(Machine machine) {
-    machineDao.saveMachine(machine);
+  public void saveMachine(Machine machine, int millId) {
+    machineDao.saveMachine(machine, millId);
   }
 
   public List<Machine> getAllMachines(int millId) {
