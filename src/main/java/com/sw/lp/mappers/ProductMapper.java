@@ -1,6 +1,7 @@
 package com.sw.lp.mappers;
 
 import com.sw.lp.constants.BlendType;
+import com.sw.lp.constants.CountType;
 import com.sw.lp.constants.EnduseType;
 import com.sw.lp.constants.MaterialBlendType;
 import com.sw.lp.constants.MaterialType;
@@ -17,10 +18,9 @@ public class ProductMapper implements RowMapper<Product> {
   public Product mapRow(ResultSet rs, int numRows) throws SQLException {
     String name = rs.getString("name");
     String description = rs.getString("description");
-    int unitId = rs.getInt("unit_id");
     int millId = rs.getInt("mill_id");
-    int count = rs.getInt("count");
     int productId = rs.getInt("product_id");
+    CountType count = CountType.valueOfLabel(rs.getInt("count"));
     MaterialType materialType = MaterialType.valueOfLabel(rs.getInt("material_id"));
     ProcessType processType = ProcessType.valueOfLabel(rs.getInt("process_id"));
     BlendType blendType = BlendType.valueOfLabel(rs.getInt("blend_type_id"));
@@ -28,7 +28,7 @@ public class ProductMapper implements RowMapper<Product> {
     EnduseType enduseType = EnduseType.valueOfLabel(rs.getInt("enduse_id"));
     MaterialBlendType materialBlendType = MaterialBlendType.valueOfLabel(rs.getInt("material_blend_type_id"));
     String code = rs.getString("code");
-    return new Product(productId, name, description, unitId, millId, count, materialType, processType, blendType, spinningTechType,
-        enduseType, materialBlendType, code);
+    return new Product(productId, name, description, millId, count, materialType, processType, blendType, spinningTechType, enduseType,
+        materialBlendType, code);
   }
 }
