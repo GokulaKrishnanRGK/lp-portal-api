@@ -1,6 +1,6 @@
 package com.sw.lp.dao;
 
-import com.sw.lp.mappers.ProductMapper;
+import com.sw.lp.dao.mappers.ProductMapper;
 import com.sw.lp.record.Product;
 import com.sw.lp.utils.LpUtils;
 import java.util.HashMap;

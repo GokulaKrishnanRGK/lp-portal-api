@@ -1,4 +1,4 @@
-package com.sw.lp.mappers;
+package com.sw.lp.dao.mappers;
 
 import com.sw.lp.constants.BlendType;
 import com.sw.lp.constants.CountType;

@@ -1,7 +1,7 @@
 package com.sw.lp.dao;
 
 import com.sw.lp.record.Machine;
-import com.sw.lp.mappers.MachineMapper;
+import com.sw.lp.dao.mappers.MachineMapper;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

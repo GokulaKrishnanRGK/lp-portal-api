@@ -1,4 +1,4 @@
-package com.sw.lp.mappers;
+package com.sw.lp.dao.mappers;
 
 import com.sw.lp.constants.MachineMake;
 import com.sw.lp.constants.MachineModel;
