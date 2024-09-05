@@ -2,8 +2,8 @@ package com.sw.lp.controller;
 
 import com.sw.lp.authentication.AuthenticationFacade;
 import com.sw.lp.entity.AppResponse;
-import com.sw.lp.record.Product;
-import com.sw.lp.service.ProductService;
+import com.sw.lp.record.BlowroomLine;
+import com.sw.lp.service.BlowroomService;
 import com.sw.lp.utils.JsonUtils;
 import java.util.List;
 import org.slf4j.Logger;
@@ -16,28 +16,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/blowroom")
+public class BlowroomController {
 
-  private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+  private static final Logger logger = LoggerFactory.getLogger(BlowroomController.class);
 
-  private ProductService productService;
+  private BlowroomService blowroomService;
   private AuthenticationFacade authenticationFacade;
 
-  public ProductController(ProductService productService, AuthenticationFacade authenticationFacade) {
-    this.productService = productService;
+  public BlowroomController(BlowroomService blowroomService, AuthenticationFacade authenticationFacade) {
+    this.blowroomService = blowroomService;
     this.authenticationFacade = authenticationFacade;
   }
 
   @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-  public AppResponse getProducts() {
-    List<Product> machines = productService.getAllProducts(authenticationFacade.getMillId());
-    return AppResponse.ok(JsonUtils.transformTree(machines));
+  public AppResponse getAllBlowroomLines() {
+    List<BlowroomLine> blowroomLines = blowroomService.getAllBlowroomLines(authenticationFacade.getMillId());
+    return AppResponse.ok(JsonUtils.transformTree(blowroomLines));
   }
 
   @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-  public AppResponse newProduct(@RequestBody Product product) {
-    productService.saveProduct(product, authenticationFacade.getMillId()); //TODO: get mill id from auth facade
+  public AppResponse newBlowroomLine(@RequestBody BlowroomLine blowroomLine) {
+    blowroomService.newBlowroomLine(blowroomLine, authenticationFacade.getMillId());
     return AppResponse.ok("Success");
   }
 

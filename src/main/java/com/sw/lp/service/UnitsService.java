@@ -14,11 +14,11 @@ public class UnitsService {
     this.unitsDao = unitsDao;
   }
 
-  public void saveUnits(List<Unit> units, int millId) {
+  public void saveUnits(List<Unit> units, String millId) {
     this.unitsDao.saveUnits(units, millId);
   }
 
-  public List<Unit> getUnits(int millId) {
+  public List<Unit> getUnits(String millId) {
     return this.unitsDao.getAllUnits(millId);
   }
 

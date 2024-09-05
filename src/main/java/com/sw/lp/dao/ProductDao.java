@@ -25,7 +25,7 @@ public class ProductDao {
     this.namedJdbcTemplate = namedJdbcTemplate;
   }
 
-  public void saveProduct(Product product, int millId) {
+  public void saveProduct(Product product, String millId) {
     String sql = "INSERT INTO product (mill_id, name, description, count, material_id, process_id, blend_type_id, spinning_tech_id, "
         + "enduse_id, material_blend_type_id, code) values (:mill_id, :name, "
         + ":description, :count, :material_id, :process_id, :blend_type_id, :spinning_tech_id, :enduse_id, :material_blend_type_id, :code)";
@@ -44,7 +44,7 @@ public class ProductDao {
     namedJdbcTemplate.update(sql, parameters);
   }
 
-  public List<Product> getAllProducts(int millId) {
+  public List<Product> getAllProducts(String millId) {
     String sql = "SELECT * FROM product where product.mill_id=?";
     return jdbcTemplate.query(sql, new ProductMapper(), millId);
   }

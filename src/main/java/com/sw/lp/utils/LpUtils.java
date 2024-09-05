@@ -1,12 +1,17 @@
 package com.sw.lp.utils;
 
 import com.sw.lp.record.Product;
+import java.util.UUID;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class LpUtils {
 
   public static String generateBatchId() {
     return RandomStringUtils.randomAlphanumeric(10).toLowerCase();
+  }
+
+  public static String getRandomUuid() {
+    return UUID.randomUUID().toString();
   }
 
   public static String generateProductCode(Product product) {

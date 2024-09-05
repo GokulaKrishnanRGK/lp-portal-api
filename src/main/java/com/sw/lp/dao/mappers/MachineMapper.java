@@ -13,9 +13,9 @@ public class MachineMapper implements RowMapper<Machine> {
   @Override
   public Machine mapRow(ResultSet rs, int numRows) throws SQLException {
     String name = rs.getString("name");
-    int millId = rs.getInt("mill_id");
+    String millId = rs.getString("mill_id");
     int year = rs.getInt("year");
-    int machineId = rs.getInt("machine_id");
+    String machineId = rs.getString("machine_id");
     MachineType type = MachineType.valueOfLabel(rs.getInt("machine_type"));
     MachineMake make = MachineMake.valueOfLabel(rs.getInt("make"));
     MachineModel model = MachineModel.valueOfLabel(rs.getInt("model"));

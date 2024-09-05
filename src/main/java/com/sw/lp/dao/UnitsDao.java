@@ -22,20 +22,20 @@ public class UnitsDao {
     this.namedJdbcTemplate = namedJdbcTemplate;
   }
 
-  public void saveUnits(List<Unit> units, int millId) {
+  public void saveUnits(List<Unit> units, String millId) {
     String sql = "INSERT INTO cotton_unit(name, mill_id) VALUES(?, ?)";
     jdbcTemplate.batchUpdate(sql, units, 50, (ps, unit) -> {
       ps.setString(1, unit.name());
-      ps.setInt(2, millId);
+      ps.setString(2, millId);
     });
   }
 
-  public List<Unit> getAllUnits(int millId) {
+  public List<Unit> getAllUnits(String millId) {
     String sql = "SELECT * FROM cotton_unit where mill_id=?";
     return jdbcTemplate.query(sql, (rs) -> {
       List<Unit> units = new ArrayList<>();
       while (rs.next()) {
-        Unit unit = new Unit(rs.getInt("unit_id"), rs.getString("name"), rs.getInt("mill_id"));
+        Unit unit = new Unit(rs.getString("unit_id"), rs.getString("name"), rs.getString("mill_id"));
         units.add(unit);
       }
       return units;

@@ -1,5 +1,6 @@
 package com.sw.lp.controller;
 
+import com.sw.lp.authentication.AuthenticationFacade;
 import com.sw.lp.entity.AppResponse;
 import com.sw.lp.record.Unit;
 import com.sw.lp.service.UnitsService;
@@ -21,20 +22,21 @@ public class UnitsController {
   private static final Logger logger = LoggerFactory.getLogger(UnitsController.class);
 
   private UnitsService unitsService;
+  private AuthenticationFacade authenticationFacade;
 
-  public UnitsController(UnitsService unitsService) {
+  public UnitsController(UnitsService unitsService, AuthenticationFacade authenticationFacade) {
     this.unitsService = unitsService;
   }
 
   @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
   public AppResponse getUnits() {
-    List<Unit> units = unitsService.getUnits(1);
+    List<Unit> units = unitsService.getUnits(authenticationFacade.getMillId());
     return AppResponse.ok(JsonUtils.transformTree(units));
   }
 
   @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
   public AppResponse newUnit(@RequestBody List<Unit> units) {
-    unitsService.saveUnits(units, 1);
+    unitsService.saveUnits(units, authenticationFacade.getMillId());
     return AppResponse.ok("Success");
   }
 }

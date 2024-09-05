@@ -18,8 +18,8 @@ public class ProductMapper implements RowMapper<Product> {
   public Product mapRow(ResultSet rs, int numRows) throws SQLException {
     String name = rs.getString("name");
     String description = rs.getString("description");
-    int millId = rs.getInt("mill_id");
-    int productId = rs.getInt("product_id");
+    String millId = rs.getString("mill_id");
+    String productId = rs.getString("product_id");
     CountType count = CountType.valueOfLabel(rs.getInt("count"));
     MaterialType materialType = MaterialType.valueOfLabel(rs.getInt("material_id"));
     ProcessType processType = ProcessType.valueOfLabel(rs.getInt("process_id"));

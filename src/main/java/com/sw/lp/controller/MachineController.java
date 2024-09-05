@@ -1,5 +1,6 @@
 package com.sw.lp.controller;
 
+import com.sw.lp.authentication.AuthenticationFacade;
 import com.sw.lp.constants.MachineType;
 import com.sw.lp.entity.AppResponse;
 import com.sw.lp.record.Machine;
@@ -23,20 +24,22 @@ public class MachineController {
   private static final Logger logger = LoggerFactory.getLogger(MachineController.class);
 
   private MachineService machineService;
+  private AuthenticationFacade authenticationFacade;
 
-  public MachineController(MachineService machineService) {
+  public MachineController(MachineService machineService, AuthenticationFacade authenticationFacade) {
     this.machineService = machineService;
+    this.authenticationFacade = authenticationFacade;
   }
 
   @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
   public AppResponse getMachinesByType(@RequestParam(required = false) MachineType type) {
-    List<Machine> machines = machineService.getAllMachines(1);
+    List<Machine> machines = machineService.getAllMachines(authenticationFacade.getMillId());
     return AppResponse.ok(JsonUtils.transformTree(machines));
   }
 
   @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
   public AppResponse newMachine(@RequestBody Machine machine) {
-    machineService.saveMachine(machine, 1); //TODO: get mill id from auth facade
+    machineService.saveMachine(machine, authenticationFacade.getMillId()); //TODO: get mill id from auth facade
     return AppResponse.ok("Success");
   }
 

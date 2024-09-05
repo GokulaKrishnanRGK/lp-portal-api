@@ -14,11 +14,11 @@ public class ProductService {
     this.productDao = productDao;
   }
 
-  public void saveProduct(Product product, int millId) {
+  public void saveProduct(Product product, String millId) {
     productDao.saveProduct(product, millId);
   }
 
-  public List<Product> getAllProducts(int millId) {
+  public List<Product> getAllProducts(String millId) {
     return productDao.getAllProducts(millId);
   }
 }

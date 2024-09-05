@@ -24,7 +24,7 @@ public class MachineDao {
     this.namedJdbcTemplate = namedJdbcTemplate;
   }
 
-  public void saveMachine(Machine machine, int millId) {
+  public void saveMachine(Machine machine, String millId) {
     String sql = "INSERT INTO machine (mill_id, name, model, make, year, machine_type) values (:mill_id, :name, "
         + ":model, :make, :year, :machine_type)";
     Map<String, Object> parameters = new HashMap<>();
@@ -37,7 +37,7 @@ public class MachineDao {
     namedJdbcTemplate.update(sql, parameters);
   }
 
-  public List<Machine> getAllMachines(int millId) {
+  public List<Machine> getAllMachines(String millId) {
     String sql = "SELECT * FROM machine where machine.mill_id=?";
     return jdbcTemplate.query(sql, new MachineMapper(), millId);
   }

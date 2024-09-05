@@ -1,5 +1,5 @@
 package com.sw.lp.record;
 
-public record Unit(int unitId, String name, int millId) {
+public record Unit(String unitId, String name, String millId) {
 
 }

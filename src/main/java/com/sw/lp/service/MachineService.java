@@ -14,11 +14,11 @@ public class MachineService {
     this.machineDao = machineDao;
   }
 
-  public void saveMachine(Machine machine, int millId) {
+  public void saveMachine(Machine machine, String millId) {
     machineDao.saveMachine(machine, millId);
   }
 
-  public List<Machine> getAllMachines(int millId) {
+  public List<Machine> getAllMachines(String millId) {
     return machineDao.getAllMachines(millId);
   }
 
